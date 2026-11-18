@@ -2,7 +2,7 @@
 
 ![](img/Meta_image_in_computer_animation_style_wide.jpeg)
 
-This is a Streamlit application that allows users to upload a PDF document and ask questions about its content using AI-powered natural language processing (NLP) tools. The app uses Langchain, OpenAI's GPT-4 model, and FAISS (Facebook AI Similarity Search) for document retrieval and question answering.
+This is a Streamlit application that allows users to upload a PDF document and ask questions about its content using AI-powered natural language processing (NLP) tools. The app uses Langchain, OpenAI's GPT-6 Luna model (`gpt-6-luna`), and FAISS (Facebook AI Similarity Search) for document retrieval and question answering.
 
 ## Requirements
 
@@ -34,7 +34,7 @@ The application runs as follows:
 * User can upload a PDF document.
 * Application processes the document by splitting it into chunks.
 * Creates a vector database for efficient document retrieval using OpenAI embeddings.
-* Use the GPT-4 model to answer questions related to the document.
+* Uses the GPT-6 Luna model to answer questions related to the document.
 
 ## Demonstration
 
@@ -57,7 +57,7 @@ Once the document is uploaded:
 
 3. Question-Answering System
 The system utilizes a **retrieval-based approach (RAG - Retrieval-Augmented Generation)** to answer user queries.
-When a user asks a question, the system retrieves the most relevant chunks from the document using FAISS and processes them with GPT-4 to generate a meaningful answer.
+When a user asks a question, the system retrieves the most relevant chunks from the document using FAISS and processes them with GPT-6 Luna to generate a meaningful answer.
 
 4. User Interface
 The application presents:
@@ -112,11 +112,11 @@ vector_db = FAISS.from_documents(chunks, embeddings)
 ```
 
 ### Question Answering Chain
-The question-answering chain is created by combining the retriever (FAISS) and the document processing chain (StuffDocumentsChain). The model used for answering questions is GPT-4:
+The question-answering chain is created by combining the retriever (FAISS) and the document processing chain (StuffDocumentsChain). The model used for answering questions is GPT-6 Luna (`gpt-6-luna`):
 
 ```python
 retriever = vector_db.as_retriever()
-llm = ChatOpenAI(model_name="gpt-4o-mini", openai_api_key=OPENAI_KEY)
+llm = ChatOpenAI(model_name="gpt-6-luna", openai_api_key=OPENAI_KEY)
 system_prompt = "You are a helpful assistant. Use the given context to answer the question."
 prompt = ChatPromptTemplate.from_messages([("system", system_prompt), ("human", "{input}")])
 question_answer_chain = create_stuff_documents_chain(llm, prompt)
