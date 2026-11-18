@@ -46,7 +46,7 @@ if uploaded_file :
     
     # Create a document retriever
     retriever = vector_db.as_retriever()
-    llm = ChatOpenAI(model_name="gpt-4o-mini", openai_api_key=OPENAI_KEY)
+    llm = ChatOpenAI(model_name="gpt-6-luna", openai_api_key=OPENAI_KEY)  # Updated from gpt-4o-mini to gpt-6-luna
 
     # Create a system prompt
     # It sets the overall context for the model.
